@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction History | Iris Predictor</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="nav-logo">
+        🌸 Iris Predictor
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/" class="active">Prediction History</a>
+        <a href="/dashboard">Analytics Dashboard</a>
+    </div>
+
+</nav>
+
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Prediction History</h1>
+            <p>View previously recorded Iris flower predictions.</p>
+        </div>
+
+        <a href="/" class="predict-btn"
+           style="display: block; text-align: center; text-decoration: none;">
+            Back to Predictor
+        </a>
+
+        {% if predictions %}
+
+        <div style="overflow-x: auto; margin-top: 25px;">
+
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Sepal Length</th>
+                        <th>Sepal Width</th>
+                        <th>Petal Length</th>
+                        <th>Petal Width</th>
+                        <th>Species</th>
+                        <th>Confidence</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for item in predictions %}
+                    <tr>
+                        <td>{{ item.prediction_date }}</td>
+                        <td>{{ item.sepal_length }}</td>
+                        <td>{{ item.sepal_width }}</td>
+                        <td>{{ item.petal_length }}</td>
+                        <td>{{ item.petal_width }}</td>
+                        <td>{{ item.predicted_species }}</td>
+                        <td>{{ item.confidence }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p style="text-align: center; margin-top: 30px;">
+            No predictions have been recorded yet.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

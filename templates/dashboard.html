@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analytics Dashboard | Iris Predictor</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="nav-logo">
+        🌸 Iris Predictor
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/history">Prediction History</a>
+        <a href="/" class="active">Analytics Dashboard</a>
+    </div>
+
+</nav>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Analytics Dashboard</h1>
+            <p>Insights and statistics from Iris flower predictions.</p>
+        </div>
+
+        <!-- Total Predictions -->
+        <div class="result">
+            <p class="result-label">TOTAL PREDICTIONS</p>
+            <h2 class="species-name">{{ total_predictions }}</h2>
+            <p>Predictions recorded in the database</p>
+        </div>
+
+        <!-- Species Distribution Chart -->
+        <div style="margin-top: 30px;">
+
+            <h2>Predictions by Species</h2>
+
+            <canvas id="speciesChart"></canvas>
+
+        </div>
+
+        <!-- Recent Predictions -->
+        <div style="margin-top: 35px;">
+
+            <h2>Recent Predictions</h2>
+
+            {% if recent_predictions %}
+
+            <div style="overflow-x: auto;">
+
+                <table style="width: 100%; text-align: left;">
+
+                    <thead>
+                        <tr>
+                            <th>Species</th>
+                            <th>Confidence</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for item in recent_predictions %}
+
+                        <tr>
+                            <td>{{ item.predicted_species }}</td>
+                            <td>{{ item.confidence }}%</td>
+                            <td>{{ item.prediction_date }}</td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% else %}
+
+            <p>No prediction records available yet.</p>
+
+            {% endif %}
+
+        </div>
+
+        <div style="margin-top: 30px;">
+
+            <a href="/" class="predict-btn"
+               style="display: block; text-align: center; text-decoration: none;">
+                Back to Predictor
+            </a>
+
+            <a href="/history"
+               style="display: block; text-align: center; margin-top: 15px;">
+                View All Prediction History
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Chart.js Configuration -->
+    <script>
+
+        const labels = {{ chart_labels | tojson }};
+        const values = {{ chart_values | tojson }};
+
+        const ctx = document.getElementById('speciesChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+
+            data: {
+                labels: labels,
+
+                datasets: [{
+                    label: 'Number of Predictions',
+                    data: values,
+                    backgroundColor: [
+                        '#667eea',
+                        '#764ba2',
+                        '#36a2eb'
+                    ],
+                    borderRadius: 8
+                }]
+            },
+
+            options: {
+                responsive: true,
+
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>

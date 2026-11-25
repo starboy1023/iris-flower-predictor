@@ -1,0 +1,7 @@
+venv/
+.env
+__pycache__/
+*.pyc
+iris_predictions.db
+iris_predictions_backup.db
+.ipynb_checkpoints/

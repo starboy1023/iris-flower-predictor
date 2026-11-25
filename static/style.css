@@ -1,0 +1,326 @@
+
+/* General page styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: block;
+}
+
+/* Main application container */
+.container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 650px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.header .icon {
+    font-size: 45px;
+    margin-bottom: 12px;
+}
+
+.header h1 {
+    font-size: 30px;
+    color: #293b70;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: #7b8498;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Input section */
+.section-title {
+    font-size: 17px;
+    color: #34446b;
+    margin-bottom: 20px;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 9px;
+    color: #47536d;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dce2ee;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+    background: #f9faff;
+}
+
+.input-group input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
+    background: #ffffff;
+}
+
+/* Prediction button */
+.predict-btn {
+    width: 100%;
+    margin-top: 30px;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.predict-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Prediction result */
+.result {
+    margin-top: 30px;
+    padding: 22px;
+    border-radius: 12px;
+    background: #eef2ff;
+    border: 1px solid #dce4ff;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.result p {
+    color: #64708a;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.result h2 {
+    color: #5144a3;
+    font-size: 25px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #9aa2b3;
+    font-size: 12px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 500px) {
+    .container {
+        padding: 25px 20px;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Enhanced prediction results */
+
+.result {
+    margin-top: 30px;
+    padding: 28px;
+    border-radius: 15px;
+    background: #f0f3ff;
+    border: 1px solid #dce4ff;
+    text-align: center;
+}
+
+.result-label {
+    color: #64708a;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.species-name {
+    color: #5144a3;
+    font-size: 30px;
+    margin: 15px 0 25px;
+}
+
+.confidence {
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.confidence p {
+    color: #64708a;
+    font-size: 14px;
+}
+
+.confidence h3 {
+    color: #667eea;
+    font-size: 35px;
+    margin-top: 8px;
+}
+
+.probability-section {
+    text-align: left;
+}
+
+.probability-section h4 {
+    color: #34446b;
+    margin-bottom: 20px;
+}
+
+.probability-item {
+    margin-bottom: 18px;
+}
+
+.probability-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #47536d;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #dce2f2;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+
+
+
+/* Modern Navigation Bar */
+
+.navbar {
+    width: 100%;
+    min-height: 75px;
+    padding: 0 6%;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.nav-logo {
+    font-size: 23px;
+    font-weight: 800;
+    color: #5969d9;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #35415c;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #667eea;
+}
+
+/* Highlight the current page */
+
+.nav-links a.active {
+    color: #667eea;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 7px;
+}
+
+/* Main page container */
+
+.container {
+    margin: 40px auto;
+}
+
+/* Mobile navigation */
+
+@media (max-width: 650px) {
+
+    .navbar {
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+        padding: 18px 12px;
+    }
+
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+}
