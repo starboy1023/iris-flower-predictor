@@ -52,32 +52,7 @@ species = ["Setosa", "Versicolor", "Virginica"]
 def home():
     return render_template("index.html")
 
-# Temporary database diagnostic
-@app.route("/db-check")
-def db_check():
-    try:
-        connection = get_db_connection()
 
-        result = connection.execute(
-            "SELECT COUNT(*) FROM predictions"
-        ).fetchone()
-
-        connection.close()
-
-        return {
-            "status": "success",
-            "database": "Connected",
-            "prediction_records": result[0]
-        }
-
-    except Exception as e:
-        app.logger.exception("Database diagnostic failed")
-
-        return {
-            "status": "error",
-            "error_type": type(e).__name__,
-            "message": str(e)
-        }, 500
 
 # Prediction history route
 @app.route("/history")
