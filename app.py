@@ -16,6 +16,7 @@ MODEL_PATH = os.path.join(BASE_DIR, "models", "iris_model.pkl")
 
 model = joblib.load(MODEL_PATH)
 
+# Database connection function
 def get_db_connection():
     connection = turso_serverless.connect(
         os.getenv("TURSO_DATABASE_URL"),
@@ -24,14 +25,7 @@ def get_db_connection():
 
     connection.row_factory = turso_serverless.Row
 
-    return connection
-
-
-# Create database table
-def create_database():
-
-    connection = get_db_connection()
-
+    # Ensure the predictions table exists
     connection.execute("""
         CREATE TABLE IF NOT EXISTS predictions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -46,11 +40,8 @@ def create_database():
     """)
 
     connection.commit()
-    connection.close()
 
-
-# Initialise database
-create_database()
+    return connection
 
 # Flower species
 species = ["Setosa", "Versicolor", "Virginica"]
