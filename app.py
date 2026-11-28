@@ -11,7 +11,10 @@ load_dotenv()
 app = Flask(__name__)
 
 # Load the trained model
-model = joblib.load("models/iris_model.pkl")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "models", "iris_model.pkl")
+
+model = joblib.load(MODEL_PATH)
 
 def get_db_connection():
     connection = turso_serverless.connect(
